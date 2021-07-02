@@ -9,6 +9,33 @@
 .main{
   width:75%;
   background: linear-gradient(to bottom, rgba(0,0,0,0),#020230),url('./bg/millonaire.jpg') center;
+  display:flex;
+  flex-direction: column;
+}
+
+
+.top{
+  height:50%;
+  position: relative;
+}
+
+.timer{
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  border: 5px solid white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:30px;
+  font-weight:700;
+  position:absolute;
+  bottom:10px;
+  left:80px;
+}
+
+.bottom{
+  color:white;
 }
 
 
@@ -29,11 +56,11 @@
 
 
 
-.moneylistitem.active{
+.moneyListItem.active{
   background-color:teal;
 }
 
-.moneylistitem{
+.moneyListItem{
   display:flex;
   align-items:center;
   padding:5px;
@@ -51,4 +78,28 @@
 .moneyListAmount{
   font-size:20px;
   font-weight:300;
+}
+
+.trivia{
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  justify-content:space-around;
+
+}
+
+.answers{
+  width:100%;
+  display:flex;
+}
+
+.question{
+  width: 80%;
+  background:linear-gradient(#100241,black);
+  text-align:center;
+  border-radius:10px;
+  border:2px solid white;
+  font-size:30px;
 }
