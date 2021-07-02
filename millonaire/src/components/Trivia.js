@@ -11,8 +11,9 @@ const Trivia = () => {
           <div className="question">
               What is the first pokemon created
           </div>
+
           <div className="answers">
-              <div className="answer">
+              <div className="answer active">
                    Pikachu
               </div> 
               <div className="answer">
