@@ -1,11 +1,87 @@
 // import logo from './logo.svg';
 import './App.css';
-import {useState} from 'react'
+import { useState} from 'react'
 import Triva from './components/Trivia';
 
 function App() {
 
-  const [active, setActive] = useState(1)
+  const [username, setUsername] = useState(null);
+  const [timeOut, setTimeOut] = useState(false);
+  const [questionNumber, setQuestionNumber] = useState(1);
+  const [earned, setEarned] = useState("$ 0");
+  const [active,setActive] = useState(false)
+
+
+  const data = [
+    {
+      id: 1,
+      question: "Rolex is a company that specializes in what type of product?",
+      answers: [
+        {
+          text: "Phone",
+          correct: false,
+        },
+        {
+          text: "Watches",
+          correct: true,
+        },
+        {
+          text: "Food",
+          correct: false,
+        },
+        {
+          text: "Cosmetic",
+          correct: false,
+        },
+      ],
+    },
+    {
+      id: 2,
+      question: "When did the website `Facebook` launch?",
+      answers: [
+        {
+          text: "2004",
+          correct: true,
+        },
+        {
+          text: "2005",
+          correct: false,
+        },
+        {
+          text: "2006",
+          correct: false,
+        },
+        {
+          text: "2007",
+          correct: false,
+        },
+      ],
+    },
+    {
+      id: 3,
+      question: "Who played the character of harry potter in movie?",
+      answers: [
+        {
+          text: "Johnny Deep",
+          correct: false,
+        },
+        {
+          text: "Leonardo Di Caprio",
+          correct: false,
+        },
+        {
+          text: "Denzel Washington",
+          correct: false,
+        },
+        {
+          text: "Daniel Red Cliff",
+          correct: true,
+        },
+      ],
+    },
+  ];
+
+
 
 
   const moneyPyramid = [
@@ -42,7 +118,10 @@ function App() {
        </div>
 
        <div className="bottom">
-           <Triva/>
+           <Triva data={data}
+                    questionNumber={questionNumber}
+                    setQuestionNumber={setQuestionNumber}
+                    setTimeOut={setTimeOut}/>
        </div>
     </div>
 
@@ -51,7 +130,7 @@ function App() {
 
       <ul className="moneylist">
         {moneyPyramid.map(q=>(
-          <li className={q.id === active ? 'moneyListItem active' : 'moneyListItem'}>
+          <li className={'what'}>
               <span className="moneyListNumber">{q.id}</span>
               <span className="moneyListAmount">{q.amount}</span>
           </li>

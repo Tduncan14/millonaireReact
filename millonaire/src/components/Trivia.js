@@ -1,32 +1,51 @@
-import React from 'react'
+import React, { useEffect,useState } from 'react'
 
 
-const Trivia = () => {
+const Trivia = ({  data,
+    questionNumber,
+    setQuestionNumber,
+    setTimeOut,}) => {
     
 
+    const [question, setQuestion] = useState(null)
+    const [selectAnswer, setSelectAnswer] = useState(null)
+    const [className,setClassName] = useState('')
+
+
+
+    useEffect(() => {
+        setQuestion(data[questionNumber - 1]);
+      }, [data, questionNumber]);
+
+
+
+    const handleClick =(a) => {
+        setSelectAnswer(a)
+        setClassName('answer active')
+
+        console.log(a.correct)
+
+        setTimeout(() => {
+
+           setClassName(a.correct ? 'answer correct' : "answer wrong")
+
+           console.log(className)
+        }, 3000)
+    }
 
   return(
       <div className="trivia">
 
           <div className="question">
-              What is the first pokemon created
+             {question?.question}
           </div>
 
-          <div className="answers">
-              <div className="answer active">
-                   Pikachu
-              </div> 
-              <div className="answer">
-                  Pikachu
+          <div className="answers" >
+            {question?.answers.map((a)=>(
+                
+                <div className={ selectAnswer === a ? className : "answer"} onClick={()=>handleClick(a)}>{a.text} </div>
+  ))}
                   </div>
-                  <div className="answer">
-                  Pikachu
-                  </div>
-                  <div className="answer">
-                  Pikachu
-                  </div>
-
-          </div>
 
 
 
