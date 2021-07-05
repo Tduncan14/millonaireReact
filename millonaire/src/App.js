@@ -3,6 +3,7 @@ import './App.css';
 import { isValidElement, useEffect, useMemo, useState} from 'react'
 import Triva from './components/Trivia';
 import Timer from './components/Timer';
+import Start from './components/Start';
 
 function App() {
 

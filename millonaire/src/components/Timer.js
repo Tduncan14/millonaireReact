@@ -12,12 +12,15 @@ export default function Timer({setStop,questionNumber}){
             return setStop(true)
         }
 
-        // const interval = setInterval(() => {
+        const interval = setInterval(() => {
 
-        //     setTimer(prev => prev - 1)
+            setTimer(prev => prev - 1)
 
             
-        // },1000)
+        },1000)
+
+
+        return () => clearInterval(interval);
 
 
 
@@ -28,7 +31,7 @@ export default function Timer({setStop,questionNumber}){
  
         setTimer(30)
 
-    },questionNumber)
+    },[questionNumber])
 
 
 
