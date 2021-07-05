@@ -10,6 +10,7 @@ function App() {
   const [questionNumber, setQuestionNumber] = useState(1);
   const [earned, setEarned] = useState("$ 0");
   const [active,setActive] = useState(false)
+  const [stop,setStop] = useState(false)
 
 
   const data = [
@@ -121,7 +122,8 @@ function App() {
            <Triva data={data}
                     questionNumber={questionNumber}
                     setQuestionNumber={setQuestionNumber}
-                    setTimeOut={setTimeOut}/>
+                    setTimeOut={setTimeOut}
+                    setstop = {setStop}/>
        </div>
     </div>
 

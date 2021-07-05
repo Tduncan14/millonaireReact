@@ -4,14 +4,19 @@ import React, { useEffect,useState } from 'react'
 const Trivia = ({  data,
     questionNumber,
     setQuestionNumber,
-    setTimeOut,}) => {
+    setTimeOut,
+    setstop}) => {
     
 
     const [question, setQuestion] = useState(null)
     const [selectAnswer, setSelectAnswer] = useState(null)
     const [className,setClassName] = useState('')
 
-
+    const delay = (duration, callback) => {
+      setTimeout(() => {
+        callback();
+      }, duration);
+    };
 
     useEffect(() => {
         setQuestion(data[questionNumber - 1]);
@@ -19,19 +24,25 @@ const Trivia = ({  data,
 
 
 
-    const handleClick =(a) => {
-        setSelectAnswer(a)
-        setClassName('answer active')
+      const handleClick = (a) => {
+        setSelectAnswer(a);
+        setClassName("answer active");
+        delay(3000, () => {
+          setClassName(a.correct ? "answer correct" : "answer wrong");
+        });
+        // setTimeout(() => {
+        //   setClassName(a.correct ? "answer correct" : "answer wrong");
+        // }, 3000);
+    
+        // setTimeout(() => {
+          delay(5000, () => {
 
-        console.log(a.correct)
-
-        setTimeout(() => {
-
-           setClassName(a.correct ? 'answer correct' : "answer wrong")
-
-           console.log(className)
-        }, 3000)
-    }
+            setQuestionNumber((prev) => prev + 1);
+            setSelectAnswer(null);
+         
+        // }, 5000);
+          })
+      };
 
   return(
       <div className="trivia">
