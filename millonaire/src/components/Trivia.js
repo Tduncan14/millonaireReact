@@ -37,8 +37,15 @@ const Trivia = ({  data,
         // setTimeout(() => {
           delay(5000, () => {
 
+            if(a.correct){
             setQuestionNumber((prev) => prev + 1);
             setSelectAnswer(null);
+            }
+
+            else{
+              setstop(true)
+              setSelectAnswer(null)
+            }
          
         // }, 5000);
           })

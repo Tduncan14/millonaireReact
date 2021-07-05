@@ -1,6 +1,6 @@
 // import logo from './logo.svg';
 import './App.css';
-import { useState} from 'react'
+import { useEffect, useState} from 'react'
 import Triva from './components/Trivia';
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
   const [username, setUsername] = useState(null);
   const [timeOut, setTimeOut] = useState(false);
   const [questionNumber, setQuestionNumber] = useState(1);
-  const [earned, setEarned] = useState("$ 0");
+  const [earned, setEarned] = useState("0");
   const [active,setActive] = useState(false)
   const [stop,setStop] = useState(false)
 
@@ -105,34 +105,57 @@ function App() {
 
   ].reverse()
 
+  useEffect(() => {
+
+    questionNumber > 1 && setEarned(moneyPyramid.find(m => m.id === questionNumber - 1).amount)
+
+
+  },[moneyPyramid , questionNumber])
 
   return (
     <div className="App">
 
     <div className="main">
-       <div className="top">
 
-         <div class="timer">
-            30
-         </div>
+     {stop ? <h1 className ="endText"> You earned: {earned}</h1> : ( 
+       <>
 
-       </div>
+       
+<div className="top">
 
-       <div className="bottom">
-           <Triva data={data}
-                    questionNumber={questionNumber}
-                    setQuestionNumber={setQuestionNumber}
-                    setTimeOut={setTimeOut}
-                    setstop = {setStop}/>
-       </div>
+<div class="timer">
+   30
+</div>
+
+</div>
+
+<div className="bottom">
+  <Triva data={data}
+           questionNumber={questionNumber}
+           setQuestionNumber={setQuestionNumber}
+           setTimeOut={setTimeOut}
+           setstop = {setStop}/>
+</div>
+
+
+
+       </>
+
+       
+     )}
+
     </div>
 
     <div className='pyramid'>
-      money
 
       <ul className="moneylist">
         {moneyPyramid.map(q=>(
-          <li className={'what'}>
+          <li  className={
+            questionNumber === q.id
+              ? "moneyListItem active"
+              : "moneyListItem"
+          }>
+            
               <span className="moneyListNumber">{q.id}</span>
               <span className="moneyListAmount">{q.amount}</span>
           </li>
