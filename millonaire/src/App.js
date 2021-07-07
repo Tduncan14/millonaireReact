@@ -5,7 +5,7 @@ import Triva from './components/Trivia';
 import Timer from './components/Timer';
 import Start from './components/Start';
 
-function App() {
+function App({history}) {
 
   const [username, setUsername] = useState(null);
   const [timeOut, setTimeOut] = useState(false);
@@ -39,6 +39,9 @@ function App() {
 
 
   ),[])
+
+
+  
 
     
   const data = [
@@ -112,6 +115,16 @@ function App() {
 
 
 
+  const restart = () => {
+
+
+    history.push('/')
+
+
+
+
+
+ }
 
   
 
@@ -124,57 +137,64 @@ function App() {
 
   return (
     <div className="App">
+     {username ? <>
+      <div className="main">
 
-    <div className="main">
+{stop ? <> <h1 className ="endText"> {username} won: {earned}</h1>
+{/*           
+          <button onClick={restart}> Play again</button> */}
 
-     {stop ? <h1 className ="endText"> You earned: {earned}</h1> : ( 
-       <>
+  </> : ( 
+  <>
 
-       
+  
 <div className="top">
 
 <div class="timer">
-   <Timer  setStop={setStop} questionNumber={questionNumber} />
+<Timer  setStop={setStop} questionNumber={questionNumber} />
 </div>
 
 </div>
 
 <div className="bottom">
-  <Triva data={data}
-           questionNumber={questionNumber}
-           setQuestionNumber={setQuestionNumber}
-           setTimeOut={setTimeOut}
-           setstop = {setStop}/>
+<Triva data={data}
+      questionNumber={questionNumber}
+      setQuestionNumber={setQuestionNumber}
+      setTimeOut={setTimeOut}
+      setstop = {setStop}/>
 </div>
 
 
 
-       </>
+  </>
 
+  
+)}
+
+</div>
+
+<div className='pyramid'>
+
+ <ul className="moneylist">
+   {moneyPyramid.map(q=>(
+     <li  className={
+       questionNumber === q.id
+         ? "moneyListItem active"
+         : "moneyListItem"
+     }>
        
-     )}
-
-    </div>
-
-    <div className='pyramid'>
-
-      <ul className="moneylist">
-        {moneyPyramid.map(q=>(
-          <li  className={
-            questionNumber === q.id
-              ? "moneyListItem active"
-              : "moneyListItem"
-          }>
-            
-              <span className="moneyListNumber">{q.id}</span>
-              <span className="moneyListAmount">{q.amount}</span>
-          </li>
+         <span className="moneyListNumber">{q.id}</span>
+         <span className="moneyListAmount">{q.amount}</span>
+     </li>
 
 
-        ))}
+   ))}
 
-      </ul>
-    </div>
+ </ul>
+</div>
+     
+      </> : <Start setUsername={setUsername} />}
+    
     
     </div>
   );
