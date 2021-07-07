@@ -118,7 +118,7 @@ function App({history}) {
   const restart = () => {
 
 
-    history.push('/')
+    //.push('/')
 
 
 
